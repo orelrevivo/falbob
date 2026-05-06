@@ -45,9 +45,9 @@ export const CustomWaitlist = () => {
   return (
     <div className="max-w-md w-full relative group animate-in fade-in slide-in-from-bottom-4 duration-1000">
       {/* Background Glow */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000" />
+      {/* <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-[2.5rem] blur opacity-20 group-hover:opacity-40 transition duration-1000" /> */}
 
-      <div className="relative dark:bg-black/90 bg-white backdrop-blur-3xl border border-white/10 p-10 rounded-md shadow-2xl overflow-hidden">
+      <div className="relative dark:bg-black/90 bg-white backdrop-blur-3xl border border-black/30 p-10 rounded-sm overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-16 -mt-16" />
 
@@ -73,27 +73,31 @@ export const CustomWaitlist = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={loading}
+                className="pr-32" // space for button
               />
-              <div className="pt-4 flex flex-col items-center gap-3">
-                <p className="text-[17px] text-gray-500 font-medium">
-                  Join <span className="dark:text-white text-black font-bold">{count.toLocaleString()}+</span> visionary builders
-                </p>
-              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-8 px-3"
+              >
+                {loading ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <span className="flex items-center gap-1 text-sm">
+                    Join Waitlist
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                )}
+              </Button>
             </div>
-            <Button
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? (
-                <Loader2 className="w-6 h-6 animate-spin" />
-              ) : (
-                <span className="flex items-center justify-center gap-2">
-                  Claim Your Spot <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
-                </span>
-              )}
-            </Button>
           </form>
         </div>
+      </div>
+      <div className="pt-4 flex flex-col items-center gap-3">
+        <p className="text-[17px] text-gray-500 font-medium">
+          Join <span className="dark:text-white text-black font-bold">{count.toLocaleString()}+</span> visionary builders
+        </p>
       </div>
     </div>
   )
